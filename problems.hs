@@ -91,3 +91,15 @@ pack xs = myReverse $ aux xs [] []
     aux (x:xs) current acc
         | x `elem` current  = aux xs (x:current) acc
         | otherwise         = aux xs [x] (current:acc)
+
+
+-- Problem 10: Run-length encoding of a list
+
+encode :: (Eq a) => [a] -> [(Int, a)]
+encode xs = aux (pack xs) []
+  where
+    aux :: (Eq a) => [[a]] -> [(Int, a)] -> [(Int, a)]
+    aux [] acc      = acc
+    aux (x:xs) acc  = aux xs ((length x, head x):acc)
+
+
