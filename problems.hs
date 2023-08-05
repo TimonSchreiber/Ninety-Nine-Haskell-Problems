@@ -201,3 +201,16 @@ split = aux []
     aux acc y@(x:xs) k
         | k >= 1    = aux (x:acc) xs (k-1)
         | otherwise = (reverse acc, y)
+
+
+-- Problem 18: Extract a slice from a list
+
+slice :: [a] -> Int -> Int -> [a]
+slice = aux []
+  where
+    aux :: [a] -> [a] -> Int -> Int -> [a]
+    aux acc [] _ _     = reverse acc
+    aux acc (x:xs) start end
+        | end <= 0    = reverse acc
+        | start <= 1  = aux (x:acc) xs start (end-1)
+        | otherwise   = aux acc xs (start-1) (end-1)
