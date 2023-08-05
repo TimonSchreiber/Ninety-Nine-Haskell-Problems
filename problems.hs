@@ -159,6 +159,7 @@ encodeDirect' = map encodeHelper . encode'
 
 -- Problem 14 Duplicate the elements of a list
 
+-- using helper class
 dupli :: [a] -> [a]
 dupli = aux []
   where
@@ -166,14 +167,17 @@ dupli = aux []
     aux acc []      = myReverse acc
     aux acc (x:xs)  = aux (x:x:acc) xs
 
+-- using list comprehension
 dupli' :: [a] -> [a]
 dupli' xs = concat [[x,x] | x <- xs]
 
 
 -- Problem 15: Replicate the elements of a list a given number of times
 
+-- suing list comprehension
 repli :: [a] -> Int -> [a]
 repli xs n = concat [replicate n x | x <- xs]
 
+-- using list monad
 repli' :: [a] -> Int -> [a]
 repli' xs n = xs >>= replicate n
