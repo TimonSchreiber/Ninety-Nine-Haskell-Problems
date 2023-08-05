@@ -197,7 +197,7 @@ split :: [a] -> Int -> ([a], [a])
 split = aux []
   where
     aux :: [a] -> [a] -> Int -> ([a], [a])
-    aux acc [] _ = (reverse acc, [])
+    aux acc [] _    = (reverse acc, [])
     aux acc y@(x:xs) k
         | k >= 1    = aux (x:acc) xs (k-1)
         | otherwise = (reverse acc, y)
