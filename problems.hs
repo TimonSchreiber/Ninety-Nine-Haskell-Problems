@@ -252,3 +252,16 @@ insertAt = aux []
     aux acc element y@(x:xs) n
         | n <= 1          = reverse (element:acc) ++ y
         | otherwise       = aux (x:acc) element xs (n-1)
+
+
+-- Problem 22: Create a list containing all integers within a given range
+
+range :: Int -> Int -> [Int]
+range start end
+    | start <= end  = reverse $ aux [] start end
+    | otherwise     = aux [] end start
+  where
+    aux :: [Int] -> Int -> Int -> [Int]
+    aux acc start end
+        | start > end = acc
+        | otherwise   = aux (start:acc) (start+1) end
