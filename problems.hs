@@ -125,3 +125,35 @@ decodeModified = concatMap aux
     aux (Single e) = [e]
     aux (Multiple n e) = replicate n e
 
+
+-- Problem 13: Run-length encoding of a list (direct solution)
+
+-- listToEntry :: [a] -> ListEntry
+-- listToEntry (x:xs)
+--     | myLength xs == 0  = Single x
+--     | otherwise         = Multiple (1 + myLength xs) x
+
+-- encodeDirect :: [a] -> [ListEntry a]
+-- encodeDirect xs = map (\(n,e) -> if n == 1 then Single e else Multiple n e) aux xs 0 []
+--   where
+--     aux :: [a] -> a -> Int -> [(Int, a)]
+--     aux [] current counter acc  = (counter, current) : acc
+--     aux (x:xs) current counter acc
+--         | x == current          = aux xs current (counter+1) acc
+--         | otherwise             = aux xs x 1 ((counter, current) : acc)
+
+encode' :: Eq a => [a] -> [(Int,a)]
+encode' = foldr helper []
+    where
+      helper x [] = [(1,x)]
+      helper x (y@(a,b):ys)
+        | x == b    = (1+a,x):ys
+        | otherwise = (1,x):y:ys
+
+encodeDirect' :: Eq a => [a] -> [ListEntry a]
+encodeDirect' = map encodeHelper . encode'
+    where
+      encodeHelper (1,x) = Single x
+      encodeHelper (n,x) = Multiple n x
+
+
