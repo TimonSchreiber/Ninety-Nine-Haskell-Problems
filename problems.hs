@@ -181,3 +181,9 @@ repli xs n = concat [replicate n x | x <- xs]
 -- using list monad
 repli' :: [a] -> Int -> [a]
 repli' xs n = xs >>= replicate n
+
+
+-- Problem 16: Drop every 'th element from a list
+
+dropEvery :: [a] -> Int -> [a]
+dropEvery xs n = map snd $ filter (\(i,x) -> i `mod` n /= 0) $ zip [1 .. ] xs
