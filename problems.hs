@@ -1,3 +1,5 @@
+module Problems where
+
 -- http://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems
 
 -- Part 01: Lists
