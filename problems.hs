@@ -96,11 +96,11 @@ pack xs = myReverse $ aux xs [] []
 -- Problem 10: Run-length encoding of a list
 
 encode :: (Eq a) => [a] -> [(Int, a)]
-encode xs = aux (pack xs) []
+encode = aux [] . pack
   where
-    aux :: (Eq a) => [[a]] -> [(Int, a)] -> [(Int, a)]
-    aux [] acc      = acc
-    aux (x:xs) acc  = aux xs ((length x, head x):acc)
+    aux :: (Eq a) => [(Int, a)] -> [[a]] -> [(Int, a)]
+    aux acc []      = reverse acc
+    aux acc (x:xs)  = aux ((length x, head x):acc) xs
 
 
 -- Problem 11: Modified run-length encoding
