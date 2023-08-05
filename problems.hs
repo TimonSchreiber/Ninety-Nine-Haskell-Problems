@@ -187,3 +187,15 @@ repli' xs n = xs >>= replicate n
 
 dropEvery :: [a] -> Int -> [a]
 dropEvery xs n = map snd $ filter (\(i,x) -> i `mod` n /= 0) $ zip [1 .. ] xs
+
+
+-- Problem 17: Split a list into two parts; the length of the first part is given
+
+split :: [a] -> Int -> ([a], [a])
+split = aux []
+  where
+    aux :: [a] -> [a] -> Int -> ([a], [a])
+    aux acc [] _ = (reverse acc, [])
+    aux acc y@(x:xs) k
+        | k >= 1    = aux (x:acc) xs (k-1)
+        | otherwise = (reverse acc, y)
