@@ -105,13 +105,13 @@ encode = aux [] . pack
 
 -- Problem 11: Modified run-length encoding
 
-data Count a = Single a | Multiple Int a
+data ListEntry a = Single a | Multiple Int a
     deriving (Show)
 
-encodeModified :: (Eq a) => [a] -> [Count a]
+encodeModified :: (Eq a) => [a] -> [ListEntry a]
 encodeModified = map aux . pack
   where
-    aux :: [a] -> Count a
+    aux :: [a] -> ListEntry a
     aux [x]     = Single x
     aux (x:xs)  = Multiple (1+length xs) x
 
