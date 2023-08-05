@@ -240,3 +240,15 @@ removeAt = aux []
     aux acc n (x:xs)
         | n <= 1    = (x, reverse acc ++ xs)
         | otherwise = aux (x:acc) (n-1) xs
+
+
+-- Problem 21: Insert an element at a given position into a list
+
+insertAt :: a -> [a] -> Int -> [a]
+insertAt = aux []
+  where
+    aux :: [a] -> a -> [a] -> Int -> [a]
+    aux acc element [] _  = reverse (element:acc)
+    aux acc element y@(x:xs) n
+        | n <= 1          = reverse (element:acc) ++ y
+        | otherwise       = aux (x:acc) element xs (n-1)
