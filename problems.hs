@@ -228,3 +228,15 @@ rotate = aux []
     aux acc y@(x:xs) n
         | n == 0    = y ++ reverse acc
         | otherwise = aux (x:acc) xs (n-1)
+
+
+-- Problem 20: Remove the K'th element form a list
+
+removeAt :: Int -> [a] -> (a, [a])
+removeAt = aux []
+  where
+    aux :: [a] -> Int -> [a] -> (a, [a])
+    aux acc _ []    = error "Index out of bounds"
+    aux acc n (x:xs)
+        | n <= 1    = (x, reverse acc ++ xs)
+        | otherwise = aux (x:acc) (n-1) xs
