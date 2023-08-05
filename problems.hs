@@ -186,7 +186,9 @@ repli' xs n = xs >>= replicate n
 -- Problem 16: Drop every N'th element from a list
 
 dropEvery :: [a] -> Int -> [a]
-dropEvery xs n = map snd $ filter (\(i,x) -> i `mod` n /= 0) $ zip [1 .. ] xs
+dropEvery xs n = map snd
+    $ filter (\(i,x) -> i `mod` n /= 0)
+    $ zip [1 .. ] xs
 
 
 -- Problem 17: Split a list into two parts; the length of the first part is given
