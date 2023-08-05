@@ -211,7 +211,7 @@ slice :: [a] -> Int -> Int -> [a]
 slice = aux []
   where
     aux :: [a] -> [a] -> Int -> Int -> [a]
-    aux acc [] _ _     = reverse acc
+    aux acc [] _ _    = reverse acc
     aux acc (x:xs) start end
         | end <= 0    = reverse acc
         | start <= 1  = aux (x:acc) xs start (end-1)
