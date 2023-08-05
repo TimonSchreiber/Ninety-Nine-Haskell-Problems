@@ -118,10 +118,10 @@ encodeModified = map aux . pack
 
 -- Problem 12: Decode a run-length encoded list
 
-decodeModified :: [Count a] -> [a]
+decodeModified :: [ListEntry a] -> [a]
 decodeModified = concatMap aux
   where
-    aux :: Count a -> [a]
+    aux :: ListEntry a -> [a]
     aux (Single e) = [e]
     aux (Multiple n e) = replicate n e
 
