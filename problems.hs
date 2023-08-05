@@ -170,3 +170,10 @@ dupli' :: [a] -> [a]
 dupli' xs = concat [[x,x] | x <- xs]
 
 
+-- Problem 15: Replicate the elements of a list a given number of times
+
+repli :: [a] -> Int -> [a]
+repli xs n = concat [replicate n x | x <- xs]
+
+repli' :: [a] -> Int -> [a]
+repli' xs n = xs >>= replicate n
