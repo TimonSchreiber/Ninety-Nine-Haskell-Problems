@@ -157,3 +157,16 @@ encodeDirect' = map encodeHelper . encode'
       encodeHelper (n,x) = Multiple n x
 
 
+-- Problem 14 Duplicate the elements of a list
+
+dupli :: [a] -> [a]
+dupli = aux []
+  where
+    aux :: [a] -> [a] -> [a]
+    aux acc []      = myReverse acc
+    aux acc (x:xs)  = aux (x:x:acc) xs
+
+dupli' :: [a] -> [a]
+dupli' xs = concat [[x,x] | x <- xs]
+
+
