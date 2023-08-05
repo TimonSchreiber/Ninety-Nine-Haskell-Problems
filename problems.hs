@@ -216,3 +216,15 @@ slice = aux []
         | end <= 0    = reverse acc
         | start <= 1  = aux (x:acc) xs start (end-1)
         | otherwise   = aux acc xs (start-1) (end-1)
+
+
+-- Problem 19: Rotate a list N places to the left
+
+rotate :: [a] -> Int -> [a]
+rotate = aux []
+  where
+    aux :: [a] -> [a] -> Int -> [a]
+    aux acc [] _    = reverse acc
+    aux acc y@(x:xs) n
+        | n == 0    = y ++ reverse acc
+        | otherwise = aux (x:acc) xs (n-1)
