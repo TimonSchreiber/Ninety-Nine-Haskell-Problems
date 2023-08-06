@@ -270,10 +270,10 @@ range start end
 
 -- Problem 23: Extract a given number of randomly selected elements form a list
 rndSelect :: {- RandomGen g => -} [a] -> Int -> [a]
-rndSelect xs n = aux [] (rotate xs 42) n
+rndSelect xs n = aux [] (rotate xs 4) n
   where
     aux :: [a] -> [a] -> Int -> [a]
     aux acc [] _    = acc
     aux acc (x:xs) n
         | n <= 0    = acc
-        | otherwise = aux (x:acc) (rotate xs 42) (n-1)
+        | otherwise = aux (x:acc) (rotate xs 4) (n-1)
