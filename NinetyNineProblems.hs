@@ -224,6 +224,7 @@ rotate :: [a] -> Int -> [a]
 rotate = aux []
   where
     aux :: [a] -> [a] -> Int -> [a]
+    aux [] [] _     = []
     aux acc [] n    = aux [] acc n
     aux acc y@(x:xs) n
         | n <= 0    = y ++ reverse acc
