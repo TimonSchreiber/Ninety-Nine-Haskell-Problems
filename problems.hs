@@ -1,4 +1,5 @@
 module Problems where
+-- import System.Random
 
 -- http://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems
 
@@ -265,3 +266,14 @@ range start end
     aux acc start end
         | start > end = acc
         | otherwise   = aux (start:acc) (start+1) end
+
+
+-- Problem 23: Extract a given number of randomly selected elements form a list
+rndSelect :: {- RandomGen g => -} [a] -> Int -> [a]
+rndSelect xs n = aux [] (rotate xs 42) n
+  where
+    aux :: [a] -> [a] -> Int -> [a]
+    aux acc [] _    = acc
+    aux acc (x:xs) n
+        | n <= 0    = acc
+        | otherwise = aux (x:acc) (rotate xs 42) (n-1)
