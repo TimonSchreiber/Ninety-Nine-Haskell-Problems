@@ -1,4 +1,4 @@
-module Problems where
+module NinetyNineProblems where
 -- import System.Random
 
 -- http://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems
