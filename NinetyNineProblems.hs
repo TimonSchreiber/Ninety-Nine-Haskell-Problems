@@ -288,3 +288,8 @@ rndSelect xs n = aux [] (rotate xs randomNumber) n
 diffSelect :: Int -> Int -> [Int]
 diffSelect n m = rndSelect (range 1 m) n
 
+
+-- Problem 25: Generate a random permutation of the elements of a list
+
+rndPermu :: [a] -> [a]
+rndPermu xs = rndSelect xs (length xs)
