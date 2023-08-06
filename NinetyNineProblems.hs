@@ -1,5 +1,4 @@
 module NinetyNineProblems where
--- import System.Random
 
 -- http://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems
 
@@ -269,11 +268,14 @@ range start end
 
 
 -- Problem 23: Extract a given number of randomly selected elements form a list
-rndSelect :: {- RandomGen g => -} [a] -> Int -> [a]
-rndSelect xs n = aux [] (rotate xs 4) n
+rndSelect :: [a] -> Int -> [a]
+rndSelect xs n = aux [] (rotate xs randomNumber) n
   where
     aux :: [a] -> [a] -> Int -> [a]
     aux acc [] _    = acc
     aux acc (x:xs) n
         | n <= 0    = acc
-        | otherwise = aux (x:acc) (rotate xs 4) (n-1)
+        | otherwise = aux (x:acc) (rotate xs randomNumber) (n-1)
+    randomNumber = 59  -- This represents the random number of rotations a list should perform
+                       -- until I figure out how to use the Random Number Generator
+                       -- (this number was drawn randomly)
