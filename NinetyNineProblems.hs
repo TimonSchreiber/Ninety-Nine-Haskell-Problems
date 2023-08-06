@@ -279,3 +279,10 @@ rndSelect xs n = aux [] (rotate xs randomNumber) n
     randomNumber = 59  -- This represents the random number of rotations a list should perform
                        -- until I figure out how to use the Random Number Generator
                        -- (this number was drawn randomly)
+
+
+-- Problem 24: Lotto: Draw N different random numbers from a set 1..M
+
+diffSelect :: Int -> Int -> [Int]
+diffSelect n m = rndSelect (range 1 m) n
+
