@@ -293,3 +293,13 @@ diffSelect n m = rndSelect (range 1 m) n
 
 rndPermu :: [a] -> [a]
 rndPermu xs = rndSelect xs (length xs)
+
+
+-- Problem 26: Generate combinations of K distinct objects chosen form the N elements of a list
+
+combinations :: Int -> [a] -> [[a]]
+combinations 0 _ = [[]]
+combinations _ [] = []
+combinations k (x:xs) =
+        map (x :) (combinations (k-1) xs)
+     ++ combinations k xs
