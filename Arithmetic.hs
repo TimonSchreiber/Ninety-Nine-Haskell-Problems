@@ -11,3 +11,17 @@ isPrime n
       where
         isNotDivisor :: Int -> Bool
         isNotDivisor k = k * k > n || (n `mod` k /= 0 && isNotDivisor (k+1))
+
+
+-- Problme 32: Determine the greates common divisor of two positive integer numbers
+
+myGCD :: Int -> Int -> Int
+myGCD 0 y = abs y
+myGCD x 0 = abs x
+myGCD x y = myGCD (y `mod` x) x
+
+
+-- Problem 33: Determine whether two positive integer numbers are coprime
+
+copirme :: Int -> Int -> Bool
+copirme a b = 1 == myGCD a b
