@@ -23,5 +23,12 @@ myGCD x y = myGCD (y `mod` x) x
 
 -- Problem 33: Determine whether two positive integer numbers are coprime
 
-copirme :: Int -> Int -> Bool
-copirme a b = 1 == myGCD a b
+coprime :: Int -> Int -> Bool
+coprime a b = 1 == myGCD a b
+
+
+-- Problem 34: Calculate Euler's totient function phi(m)
+
+totient :: Int -> Int
+totient 1 = 1
+totient m = length $ filter (coprime m) [1 .. m-1]
