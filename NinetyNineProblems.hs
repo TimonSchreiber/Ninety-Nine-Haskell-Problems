@@ -1,5 +1,8 @@
 module NinetyNineProblems where
 
+import Data.Function (on)
+import Data.List (sortBy, groupBy)
+
 -- http://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems
 
 -- Part 01: Lists
@@ -303,3 +306,28 @@ combinations _ [] = []
 combinations k (x:xs) =
         map (x :) (combinations (k-1) xs)
      ++ combinations k xs
+
+
+-- Problem 27: Group the elements of a set into disjoint subsets (TODO)
+-- this is the solution form thw website -> what does it do and how does it work??
+
+combination :: Int -> [a] -> [([a],[a])]
+combination 0 xs     = [([],xs)]
+combination n []     = []
+combination n (x:xs) = ts ++ ds
+  where
+    ts = [ (x:ys,zs) | (ys,zs) <- combination (n-1) xs ]
+    ds = [ (ys,x:zs) | (ys,zs) <- combination  n    xs ]
+
+group :: [Int] -> [a] -> [[[a]]]
+group [] _ = [[]]
+group (n:ns) xs = [ g:gs | (g,rs) <- combination n xs, gs <- group ns rs ]
+
+
+-- Problem 28: Sorting a list of lists according to length of sublists
+
+lsort :: [[a]] -> [[a]]
+lsort = sortBy (\xs ys -> compare (length xs) (length ys))
+
+lfsort :: [[a]] -> [[a]]
+lfsort = concat . lsort . groupBy ((==) `Data.Function.on` length) . lsort
