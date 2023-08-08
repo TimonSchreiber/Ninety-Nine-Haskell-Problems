@@ -1,4 +1,4 @@
-module NinetyNineProblems where
+module Lists where
 
 import Data.Function (on)
 import Data.List (sortBy, groupBy)
