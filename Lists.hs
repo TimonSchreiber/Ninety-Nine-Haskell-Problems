@@ -5,9 +5,7 @@ import Data.List (sortBy, groupBy)
 
 -- http://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems
 
--- Part 01: Lists
-
--- Probmel 01: Find the last element of a list
+-- Problem 01: Find the last element of a list
 
 myLast :: [a] -> a
 myLast []       = error "Empty List!"
